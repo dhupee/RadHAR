@@ -183,8 +183,21 @@ learning_hist = model.fit(X_train, y_train,
 # saving the best model
 model.save(checkpoint_model_path)
 
-# create graph of the validation accuracy and loss
-plt.plot(learning_hist.history['val_acc'])
-plt.plot(learning_hist.history['val_loss'])
-plt.legend(['val_acc', 'val_loss'])
+# create graph of the validation accuracy and loss with epochs as the x-axis
+plt.plot(learning_hist.history['accuracy'])
+plt.plot(learning_hist.history['val_accuracy'])
+plt.title('model accuracy')
+plt.ylabel('accuracy')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
 plt.show()
+plt.savefig('/root/content/model_accuracy.png')
+
+plt.plot(learning_hist.history['loss'])
+plt.plot(learning_hist.history['val_loss'])
+plt.title('model loss')
+plt.ylabel('loss')
+plt.xlabel('epoch')
+plt.legend(['train', 'val'], loc='upper left')
+plt.show()
+plt.savefig('/root/content/model_loss.png')
