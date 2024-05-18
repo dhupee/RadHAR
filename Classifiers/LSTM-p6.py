@@ -29,6 +29,8 @@ from tensorflow.compat.v1 import set_random_seed
 #from tensorflow.keras.utils import set_random_seed
 set_random_seed(rand_seed)
 
+import matplotlib.pyplot as plt
+
 # from tensorflow import keras
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, LSTM, Dense, Dropout, Flatten, Activation
@@ -178,3 +180,11 @@ learning_hist = model.fit(X_train, y_train,
                            callbacks=callbacks_list
                           )
 
+# saving the best model
+model.save(checkpoint_model_path)
+
+# create graph of the validation accuracy and loss
+plt.plot(learning_hist.history['val_acc'])
+plt.plot(learning_hist.history['val_loss'])
+plt.legend(['val_acc', 'val_loss'])
+plt.show()
